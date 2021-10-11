@@ -1,7 +1,7 @@
 開発者
 
 - [u-Hoshi](https://github.com/u-Hoshi)
-- [koki-sys]()
+- [koki-sys](https://github.com/koki-sys)
 
 # 開発サーバの起動
 
