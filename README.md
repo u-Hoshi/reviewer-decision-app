@@ -1,46 +1,77 @@
-# Getting Started with Create React App
+開発者
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [u-Hoshi](https://github.com/u-Hoshi)
+- [koki-sys]()
 
-## Available Scripts
+# 開発サーバの起動
 
-In the project directory, you can run:
+```
+$ yarn install
+$ yarn start
+```
 
-### `yarn start`
+# Git 運用ルール
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 目的
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- お互いのコードを打ち消し合わないような運用にする
+- master ブランチを複数人で編集しない
+- それぞれが今何をやってるのかわかるようにする
 
-### `yarn test`
+## 基本
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+今回は GitHub Flow を用いる
 
-### `yarn build`
+- master : リリースブランチ
+  - 基本的にここにコミットはしない
+  - GitHub 側から README をいじった時などここにコミットされる可能性がある
+    - 複数人でコミットしあうことがないように  
+      コミュニケーションを取りつつやること
+- トピックブランチ
+  - feature/xxx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+（ブランチ名はスネークケースでもキャメルケースでも可）
+スネークケース：`array_change_key_case`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+キャメルケース：`thisIsAnExsample`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ブランチの切り方
 
-### `yarn eject`
+```
+master
+ └トピックブランチ(feature/xxx)
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- master が最上位
+  - トピックブランチのマージコミットが並ぶ（はず）
+  - ここからトピックブランチをきる
+- トピックブランチでのみ開発する
+  - ブランチ名と作業が一致するように
+  - こまめにコミットしよう
+    - 先延ばしにすると後で地獄を見る可能性が...
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## master オペレーション
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. master を最新にする（pull でも fetch&rebase でも）
+2. トピックブランチをチェックアウト
+3. master ブランチを rebase!!!
+4. master の最新から自分のトピックブランチが伸びていることを確認  
+   違っていたらなんかおかしいから相談しよう
+5. コンフリクトした時はひとりで悩まず誰かを呼んでいっしょに解消 ここで直しておくと merge 時にコンフリクトしないので安心
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## コミットメッセージ
 
-## Learn More
+- 日本語で OK
+- なにをやったのかわかるように
+  - ブランチ名で何してるかわかればざっくばらんでも ok
+  - OK：Bookmark ボタンを追加・アイコン位置調整
+  - NG：no change・pull できない・commit・change posterlist
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 6 つのルール
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 【ルール 1】master ブランチは常にデプロイ可能である
+- 【ルール 2】作業用ブランチを master から作成する（例：feature/xxx）
+- 【ルール 3】作業用ブランチを定期的にプッシュする
+- 【ルール 4】プルリクエストを活用する
+- 【ルール 5】プルリクエストが承認されたら master へマージする
+- 【ルール 6】master へのマージが完了したらデプロイを行う
