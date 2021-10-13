@@ -22,8 +22,22 @@ export const RootRouter = () => {
         { path: 'signout', element: <Signout /> },
         { path: 'forget', element: <ForgetPassForm /> },
         { path: '404', element: <div>Not Found</div> },
-        { path: '*', element: <Navigate to='/404' /> },
+        { path: '*', element: <Navigate to='/404' /> }
       ],
+    },
+    {
+      // ルーレット関連のデザイン
+      element: <GroupLayout />,
+      children: [
+        // プロフィールのルーティング koki-sys
+        { path: '/profile', element: <Profile />},
+
+        // グループの作成など、ルーレット画面のルーティング koki-sys
+        { path: '/:group', element: <Roulet />},
+        { path: '/:group/member', element: <GroupMenber />},
+        { path: '/:group/create', element: <CreateGroup />},
+        { path: '/:group/join', element: <JoinGroup />},
+      ]
     },
     { path: '*', element: <Navigate to='/404' /> },
   ]);
