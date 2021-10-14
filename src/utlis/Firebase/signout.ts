@@ -1,3 +1,4 @@
-import { fireAuth } from './config';
+import { auth } from './config';
+import { signOut } from 'firebase/auth';
 
-export const signout = () => fireAuth.signOut();
+export const signout = () => signOut(auth);

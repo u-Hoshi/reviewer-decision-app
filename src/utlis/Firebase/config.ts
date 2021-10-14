@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
@@ -14,8 +14,9 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 
-export const fireAuth = firebase.auth();
-
-export const storage = firebase.storage();
+export const auth = getAuth();
+onAuthStateChanged(auth, user => {
+  console.log(user);
+});
 
 export default firebase;
