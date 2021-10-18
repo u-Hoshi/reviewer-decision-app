@@ -1,7 +1,7 @@
 // src/Route.tsx
 
 import { Navigate, useRoutes } from 'react-router-dom';
-import { SimpleLayout } from './layouts/Simple';
+import { GroupLayout } from './layouts/Group';
 
 // import
 import { Signup } from './pages/Signup';
@@ -9,13 +9,18 @@ import { Signup } from './pages/Signup';
 // <ForgetPassForm>import
 import { ForgetPassForm } from './pages/ForgetPassForm';
 import { Signout } from './pages/Signout';
+import { Roulette } from './pages/Roulette';
+import { GroupMember } from './pages/GroupMember';
+import { CreateGroup } from './pages/CreateGroup';
+import { JoinGroup } from './pages/JoinGroup';
+import { Profile } from './pages/Profile';
 
 export const RootRouter = () => {
   return useRoutes([
     {
-      element: <SimpleLayout />,
+     // element: <SimpleLayout />,
       children: [
-        { path: 'login', element: <Login /> },
+        //{ path: 'login', element: <Login /> },
         { path: 'signup', element: <Signup /> },
 
         // 追加！！
@@ -33,8 +38,8 @@ export const RootRouter = () => {
         { path: '/profile', element: <Profile />},
 
         // グループの作成など、ルーレット画面のルーティング koki-sys
-        { path: '/:group', element: <Roulet />},
-        { path: '/:group/member', element: <GroupMenber />},
+        { path: '/:group', element: <Roulette />},
+        { path: '/:group/member', element: <GroupMember />},
         { path: '/:group/create', element: <CreateGroup />},
         { path: '/:group/join', element: <JoinGroup />},
       ]
