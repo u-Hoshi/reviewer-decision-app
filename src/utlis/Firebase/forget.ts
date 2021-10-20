@@ -1,4 +1,5 @@
-import { fireAuth } from './config';
+import { auth } from './config';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 export const forgetPass = (email: string) =>
-  fireAuth.sendPasswordResetEmail(email);
+  sendPasswordResetEmail(auth, email);

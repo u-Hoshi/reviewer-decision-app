@@ -1,4 +1,5 @@
-import { fireAuth } from './config';
+import { auth } from './config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export type FireLoginType = {
   email: string;
@@ -6,4 +7,4 @@ export type FireLoginType = {
 };
 
 export const login = ({ email, password }: FireLoginType) =>
-  fireAuth.signInWithEmailAndPassword(email, password);
+  signInWithEmailAndPassword(auth, email, password);

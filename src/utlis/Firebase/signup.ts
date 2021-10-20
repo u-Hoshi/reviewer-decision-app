@@ -1,4 +1,5 @@
-import { fireAuth } from './config';
+import { auth } from './config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export type FireSignupType = {
   email: string;
@@ -6,4 +7,4 @@ export type FireSignupType = {
 };
 
 export const signup = ({ email, password }: FireSignupType) =>
-  fireAuth.createUserWithEmailAndPassword(email, password);
+  createUserWithEmailAndPassword(auth, email, password);
