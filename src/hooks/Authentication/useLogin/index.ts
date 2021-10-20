@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SetErrorFn, useAuthHelper } from '../useAuthHelper';
-import { login as fireLogin } from '../../../utlis/Firebase/login';
+import { login as fireLogin } from '../../../utils/Firebase/login';
 
 export const useLogin = () => {
   const emailRef = useRef<HTMLInputElement>(null);
