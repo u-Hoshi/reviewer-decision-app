@@ -10,6 +10,10 @@ $ yarn install
 $ yarn start
 ```
 
+# デザイン
+
+Figma：https://www.figma.com/file/nD4xqurn09eDkJy5Y3H34O/レビュワーを決めるアプリ?node-id=19%3A7
+
 # Git 運用ルール
 
 ## 目的
