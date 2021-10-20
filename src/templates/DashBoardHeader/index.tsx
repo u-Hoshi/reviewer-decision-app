@@ -1,15 +1,19 @@
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Avatar, Toolbar, IconButton } from "@material-ui/core";
 import { Logo } from "../Logo";
 
+import useStyles from "./style";
+
 export const DashBoardHeader = () => {
+  const styles = useStyles();
   return (
-    <AppBar>
+    <AppBar color="default">
       <Toolbar>
-        <div>
+        <div className={styles.logo}>
           <Logo />
         </div>
-
-        
+        <IconButton className={styles.profileIcon}>
+          <Avatar />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
