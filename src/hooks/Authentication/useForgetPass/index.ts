@@ -1,30 +1,39 @@
-import { useRef, useState } from 'react';
-import { SetErrorFn, useAuthHelper } from '../useAuthHelper';
-import { forgetPass } from '../../../utils/Firebase/forget';
+import { ErrorState } from './../useAuthHelper/index'
+// import { useForgetPass } from './index'
+import { useRef, useState, VFC } from 'react'
+import { SetErrorFn, useAuthHelper } from '../useAuthHelper'
+import { forgetPass } from '../../../utils/Firebase/forget'
 
-export const useForgetPass = () => {
-  const emailRef = useRef<HTMLInputElement>(null);
+type useForgetPassType = {
+  ref: {
+    emailRef: React.RefObject<HTMLInputElement>
+  }
+  loading: boolean
+  error: Map<ErrorState, string>
+  sendEmail: () => Promise<void>
+  sendSuccess: boolean
+}
 
-  const [sendSuccess, setSendSuccess] = useState(false);
+export const useForgetPass = (): useForgetPassType => {
+  const emailRef = useRef<HTMLInputElement>(null)
+
+  const [sendSuccess, setSendSuccess] = useState(false)
 
   const formValidation = (setError: SetErrorFn) => {
     if (!emailRef.current?.value) {
-      setError('email', 'メールアドレスを入力してください。');
-      return true;
+      setError('email', 'メールアドレスを入力してください。')
+      return true
     }
 
-    return false;
-  };
+    return false
+  }
 
   const sendEmail = async () => {
-    await forgetPass(emailRef.current?.value || '');
-    setSendSuccess(true);
-  };
+    await forgetPass(emailRef.current?.value || '')
+    setSendSuccess(true)
+  }
 
-  const { authExecute, error, loading } = useAuthHelper(
-    sendEmail,
-    formValidation
-  );
+  const { authExecute, error, loading } = useAuthHelper(sendEmail, formValidation)
 
   return {
     ref: {
@@ -34,5 +43,5 @@ export const useForgetPass = () => {
     error,
     sendEmail: authExecute,
     sendSuccess,
-  };
-};
+  }
+}
