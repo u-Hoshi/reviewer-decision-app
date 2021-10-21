@@ -21,7 +21,11 @@ import { Home } from "./pages/Home";
 export const RootRouter = () => {
   return useRoutes([
     {
-      // element: <SimpleLayout />,
+      element: <HomeLayout />,
+      children: [{ path: "/", element: <Home /> }],
+    },
+    {
+      element: <SimpleLayout />,
       children: [
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
@@ -40,10 +44,6 @@ export const RootRouter = () => {
         { path: "/:group/create", element: <CreateGroup /> },
         { path: "/:group/join", element: <JoinGroup /> },
       ],
-    },
-    {
-      element: <HomeLayout />,
-      children: [{ path: "/", element: <Home /> }],
     },
     { path: "*", element: <Navigate to="/404" /> },
   ]);
