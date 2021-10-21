@@ -1,10 +1,10 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core"
 
 export default makeStyles({
   root: {
-    width: '95%',
+    width: "95%",
     maxWidth: 550,
-    padding: '50px 70px',
+    padding: "50px 70px",
   },
   margin: {
     marginBottom: 40,
@@ -13,6 +13,6 @@ export default makeStyles({
     width: 80,
   },
   label: {
-    display: 'block',
+    display: "block",
   },
-});
+})

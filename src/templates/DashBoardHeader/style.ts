@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core"
 
 export default makeStyles({
   logo: {
@@ -8,5 +8,5 @@ export default makeStyles({
     padding: 0,
     width: 44,
     height: 44,
-  }
-});
+  },
+})

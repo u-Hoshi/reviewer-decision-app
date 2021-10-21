@@ -32,6 +32,7 @@
     "eject": "react-scripts eject",
     "codegen": "graphql-codegen --require dotenv/config --config src/script/codegen.js dotenv_config_path=.env",
     "prepare": "husky install",
+    "format": "prettier --write ./src/**/*.{ts,tsx}",
     "lint": "eslint --fix 'src/**/*.{js,ts}'",
     "lint-fix": "eslint --fix 'src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'"
   },
@@ -45,9 +46,6 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
-    ],
-    "*.{css,less,sass,scss}": [
-      "stylelint --fix"
     ]
   },
   "browserslist": {

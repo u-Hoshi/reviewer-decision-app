@@ -1,8 +1,8 @@
-import { ErrorState } from './../useAuthHelper/index'
+import { ErrorState } from "./../useAuthHelper/index"
 // import { useForgetPass } from './index'
-import { useRef, useState, VFC } from 'react'
-import { SetErrorFn, useAuthHelper } from '../useAuthHelper'
-import { forgetPass } from '../../../utils/Firebase/forget'
+import { useRef, useState, VFC } from "react"
+import { SetErrorFn, useAuthHelper } from "../useAuthHelper"
+import { forgetPass } from "../../../utils/Firebase/forget"
 
 type useForgetPassType = {
   ref: {
@@ -21,7 +21,7 @@ export const useForgetPass = (): useForgetPassType => {
 
   const formValidation = (setError: SetErrorFn) => {
     if (!emailRef.current?.value) {
-      setError('email', 'メールアドレスを入力してください。')
+      setError("email", "メールアドレスを入力してください。")
       return true
     }
 
@@ -29,7 +29,7 @@ export const useForgetPass = (): useForgetPassType => {
   }
 
   const sendEmail = async () => {
-    await forgetPass(emailRef.current?.value || '')
+    await forgetPass(emailRef.current?.value || "")
     setSendSuccess(true)
   }
 

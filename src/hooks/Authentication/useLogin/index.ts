@@ -1,7 +1,7 @@
-import { useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ErrorState, SetErrorFn, useAuthHelper } from '../useAuthHelper'
-import { login as fireLogin } from '../../../utils/Firebase/login'
+import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
+import { ErrorState, SetErrorFn, useAuthHelper } from "../useAuthHelper"
+import { login as fireLogin } from "../../../utils/Firebase/login"
 
 type useLoginType = {
   ref: {
@@ -23,11 +23,11 @@ export const useLogin = (): useLoginType => {
     let invalidValidation = false
 
     if (!emailRef.current?.value) {
-      setError('email', 'メールアドレスを入力してください。')
+      setError("email", "メールアドレスを入力してください。")
       invalidValidation = true
     }
     if (!passwordRef.current?.value) {
-      setError('password', 'パスワードを入力してください。')
+      setError("password", "パスワードを入力してください。")
       invalidValidation = true
     }
 
@@ -35,15 +35,15 @@ export const useLogin = (): useLoginType => {
   }
   const login = async () => {
     const { user } = await fireLogin({
-      email: emailRef.current?.value || '',
-      password: passwordRef.current?.value || '',
+      email: emailRef.current?.value || "",
+      password: passwordRef.current?.value || "",
     })
 
     if (!user?.uid) {
-      throw new Error('ログインに失敗しました。')
+      throw new Error("ログインに失敗しました。")
     }
 
-    navigate('/')
+    navigate("/")
   }
 
   const { authExecute, error, loading } = useAuthHelper(login, formValidation)

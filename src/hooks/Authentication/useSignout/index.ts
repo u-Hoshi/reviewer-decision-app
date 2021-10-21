@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom'
-import { signout as fireSignout } from '../../../utils/Firebase/signout'
+import { useNavigate } from "react-router-dom"
+import { signout as fireSignout } from "../../../utils/Firebase/signout"
 
 type useSignoutType = {
   signout: () => Promise<void>
@@ -10,7 +10,7 @@ export const useSignout = (): useSignoutType => {
 
   const signout = async () => {
     await fireSignout()
-    navigate('/')
+    navigate("/")
   }
 
   return {
