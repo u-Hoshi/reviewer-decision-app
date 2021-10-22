@@ -1,11 +1,13 @@
 import { Navigate, useRoutes } from "react-router-dom"
-import { GroupLayout } from "./Layouts/Group"
 
 // import
 import { Signup } from "./pages/Signup"
 
 // <ForgetPassForm>import
 import { SimpleLayout } from "./Layouts/Simple"
+import { HomeLayout } from "./Layouts/Home"
+import { GroupLayout } from "./Layouts/Group"
+
 import { ForgetPassForm } from "./pages/ForgetPassForm"
 import { Login } from "./pages/Login"
 import { Signout } from "./pages/Signout"
@@ -14,11 +16,17 @@ import { GroupMember } from "./pages/GroupMember"
 import { CreateGroup } from "./pages/CreateGroup"
 import { JoinGroup } from "./pages/JoinGroup"
 import { Profile } from "./pages/Profile"
+import { Home } from "./pages/Home"
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const RootRouter = () => {
   return useRoutes([
     {
-      // element: <SimpleLayout />,
+      element: <HomeLayout />,
+      children: [{ path: "/", element: <Home /> }],
+    },
+    {
+      element: <SimpleLayout />,
       children: [
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
@@ -29,13 +37,9 @@ export const RootRouter = () => {
       ],
     },
     {
-      // ルーレット関連のデザイン
       element: <GroupLayout />,
       children: [
-        // プロフィールのルーティング koki-sys
         { path: "/profile", element: <Profile /> },
-
-        // グループの作成など、ルーレット画面のルーティング koki-sys
         { path: "/:group", element: <Roulette /> },
         { path: "/:group/member", element: <GroupMember /> },
         { path: "/:group/create", element: <CreateGroup /> },
