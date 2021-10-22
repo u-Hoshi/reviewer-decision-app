@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
-import { HomeHeader } from "../../components/HomeHeader";
+import { Outlet } from "react-router-dom"
+import { HomeHeader } from "../../components/HomeHeader"
 
 export const HomeLayout = () => {
   return (
@@ -7,5 +7,5 @@ export const HomeLayout = () => {
       <HomeHeader />
       <Outlet />
     </div>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core"
 
 export default makeStyles({
   root: {
@@ -21,4 +21,4 @@ export default makeStyles({
       backgroundColor: "#E18F61",
     },
   },
-});
+})

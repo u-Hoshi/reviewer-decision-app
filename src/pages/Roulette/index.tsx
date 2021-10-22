@@ -1,9 +1,9 @@
-import { RouletteBoard } from "../../components/RouletteBoard";
-import { Grid } from "@material-ui/core";
-import useStyles from "./style";
+import { RouletteBoard } from "../../components/RouletteBoard"
+import { Grid } from "@material-ui/core"
+import useStyles from "./style"
 
 export const Roulette = () => {
-  const styles = useStyles();
+  const styles = useStyles()
   return (
     <div>
       <Grid container spacing={2} className={styles.root}>
@@ -15,5 +15,5 @@ export const Roulette = () => {
         </Grid>
       </Grid>
     </div>
-  );
-};
+  )
+}

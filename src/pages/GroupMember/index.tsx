@@ -1,3 +1,3 @@
 export const GroupMember = () => {
-    return <div>グループメンバー画面</div>
+  return <div>グループメンバー画面</div>
 }

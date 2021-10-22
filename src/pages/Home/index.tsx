@@ -1,8 +1,8 @@
-import { Button, Grid } from "@material-ui/core";
-import useStyles from "./style";
+import { Button, Grid } from "@material-ui/core"
+import useStyles from "./style"
 
 export const Home = () => {
-  const styles = useStyles();
+  const styles = useStyles()
   return (
     <div>
       <Grid container spacing={2} className={styles.root}>
@@ -20,5 +20,5 @@ export const Home = () => {
         </Grid>
       </Grid>
     </div>
-  );
-};
+  )
+}

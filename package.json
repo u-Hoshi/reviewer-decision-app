@@ -14,6 +14,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",
+    "eslint-config-prettier": "^8.3.0",
     "firebase": "^9.1.2",
     "history": "^5.0.1",
     "react": "^17.0.2",
@@ -29,12 +30,22 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "codegen": "graphql-codegen --require dotenv/config --config src/script/codegen.js dotenv_config_path=.env"
+    "codegen": "graphql-codegen --require dotenv/config --config src/script/codegen.js dotenv_config_path=.env",
+    "prepare": "husky install",
+    "format": "prettier --write ./src/**/*.{ts,tsx}",
+    "lint": "eslint --fix 'src/**/*.{js,ts}'",
+    "lint-fix": "eslint --fix 'src/**/*.{js,ts}' && prettier --write './src/**/*.{js,ts}'"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "browserslist": {
@@ -54,6 +65,9 @@
     "@graphql-codegen/typescript": "^2.2.4",
     "@graphql-codegen/typescript-operations": "^2.1.8",
     "@graphql-codegen/typescript-react-apollo": "^3.1.6",
-    "graphql": "^15.6.1"
+    "graphql": "^15.6.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.3",
+    "prettier": "^2.4.1"
   }
 }

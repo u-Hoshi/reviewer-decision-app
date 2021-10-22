@@ -1,10 +1,11 @@
-import { auth } from './config';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "./config"
+import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth"
+import { VFC } from "react"
 
 export type FireSignupType = {
-  email: string;
-  password: string;
-};
+  email: string
+  password: string
+}
 
-export const signup = ({ email, password }: FireSignupType) =>
-  createUserWithEmailAndPassword(auth, email, password);
+export const signup = ({ email, password }: FireSignupType): Promise<UserCredential> =>
+  createUserWithEmailAndPassword(auth, email, password)

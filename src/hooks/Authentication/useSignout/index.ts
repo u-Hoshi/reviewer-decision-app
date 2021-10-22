@@ -1,15 +1,19 @@
-import { useNavigate } from 'react-router-dom';
-import { signout as fireSignout } from '../../../utils/Firebase/signout';
+import { useNavigate } from "react-router-dom"
+import { signout as fireSignout } from "../../../utils/Firebase/signout"
 
-export const useSignout = () => {
-  const navigate = useNavigate();
+type useSignoutType = {
+  signout: () => Promise<void>
+}
+
+export const useSignout = (): useSignoutType => {
+  const navigate = useNavigate()
 
   const signout = async () => {
-    await fireSignout();
-    navigate('/');
-  };
+    await fireSignout()
+    navigate("/")
+  }
 
   return {
     signout,
-  };
-};
+  }
+}

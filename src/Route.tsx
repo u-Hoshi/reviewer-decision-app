@@ -1,23 +1,24 @@
-import { Navigate, useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom"
 
 // import
-import { Signup } from "./pages/Signup";
+import { Signup } from "./pages/Signup"
 
 // <ForgetPassForm>import
-import { SimpleLayout } from "./Layouts/Simple";
-import { HomeLayout } from "./Layouts/Home";
-import { GroupLayout } from "./Layouts/Group";
+import { SimpleLayout } from "./Layouts/Simple"
+import { HomeLayout } from "./Layouts/Home"
+import { GroupLayout } from "./Layouts/Group"
 
-import { ForgetPassForm } from "./pages/ForgetPassForm";
-import { Login } from "./pages/Login";
-import { Signout } from "./pages/Signout";
-import { Roulette } from "./pages/Roulette";
-import { GroupMember } from "./pages/GroupMember";
-import { CreateGroup } from "./pages/CreateGroup";
-import { JoinGroup } from "./pages/JoinGroup";
-import { Profile } from "./pages/Profile";
-import { Home } from "./pages/Home";
+import { ForgetPassForm } from "./pages/ForgetPassForm"
+import { Login } from "./pages/Login"
+import { Signout } from "./pages/Signout"
+import { Roulette } from "./pages/Roulette"
+import { GroupMember } from "./pages/GroupMember"
+import { CreateGroup } from "./pages/CreateGroup"
+import { JoinGroup } from "./pages/JoinGroup"
+import { Profile } from "./pages/Profile"
+import { Home } from "./pages/Home"
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const RootRouter = () => {
   return useRoutes([
     {
@@ -46,5 +47,5 @@ export const RootRouter = () => {
       ],
     },
     { path: "*", element: <Navigate to="/404" /> },
-  ]);
-};
+  ])
+}
