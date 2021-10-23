@@ -1,8 +1,9 @@
 import { RouletteBoard } from "../../components/RouletteBoard"
-import { Grid } from "@material-ui/core"
+import { Button, Grid, TextField } from "@material-ui/core"
 import useStyles from "./style"
+import { VFC } from "react"
 
-export const Roulette = () => {
+export const Roulette: VFC = () => {
   const styles = useStyles()
   return (
     <div>
@@ -10,8 +11,19 @@ export const Roulette = () => {
         <Grid item sm={6} className={styles.board}>
           <RouletteBoard />
         </Grid>
-        <Grid item sm={6}>
-          入力するとこ
+        <Grid container direction="column" justify="center" sm={6}>
+          <TextField id="outlined-basic" label="プルリクのリンク" variant="outlined" style={{ marginBottom: "30px" }} />
+          <TextField
+            id="outlined-basic"
+            label="コメント"
+            variant="outlined"
+            multiline
+            rows={4}
+            style={{ marginBottom: "30px" }}
+          />
+          <Button color="primary" variant="contained" style={{ width: "200px", margin: "0 auto" }}>
+            送信
+          </Button>
         </Grid>
       </Grid>
     </div>

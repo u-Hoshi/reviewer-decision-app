@@ -2,7 +2,8 @@ import { makeStyles } from "@material-ui/core"
 
 export default makeStyles({
   root: {
-    marginTop: "5%",
+    margin: "5% auto 0",
+    maxWidth: "1200px",
   },
   board: {
     margin: "auto",
