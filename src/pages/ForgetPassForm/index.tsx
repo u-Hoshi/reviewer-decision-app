@@ -1,8 +1,9 @@
 import { Button, Card, TextField, Typography } from "@material-ui/core"
+import { VFC } from "react"
 import { useForgetPass } from "../../hooks/Authentication/useForgetPass"
 import useStyles from "./style"
 
-export const ForgetPassForm = () => {
+export const ForgetPassForm: VFC = () => {
   const styles = useStyles()
 
   const { ref, sendEmail, sendSuccess, loading, error } = useForgetPass()

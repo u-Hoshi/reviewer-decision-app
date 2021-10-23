@@ -1,7 +1,8 @@
 import { Button, Grid } from "@material-ui/core"
+import { VFC } from "react"
 import useStyles from "./style"
 
-export const Home = () => {
+export const Home: VFC = () => {
   const styles = useStyles()
   return (
     <div>

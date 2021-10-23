@@ -1,9 +1,10 @@
 import { AppBar, Toolbar } from "@material-ui/core"
+import { VFC } from "react"
 import { Logo } from "../../templates/Logo"
 
 import useStyles from "./style"
 
-export const HomeHeader = () => {
+export const HomeHeader: VFC = () => {
   const styles = useStyles()
   return (
     <AppBar color="default">
