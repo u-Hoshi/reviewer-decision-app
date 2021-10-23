@@ -1,3 +1,4 @@
+import { VFC } from "react"
 import { Wheel } from "react-custom-roulette"
 import useStyles from "./style"
 
@@ -7,7 +8,7 @@ const data = [
   { option: "Lisa" },
 ]
 
-export const RouletteBoard = () => {
+export const RouletteBoard: VFC = () => {
   const styles = useStyles()
   return (
     <div className={styles.root}>
