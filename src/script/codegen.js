@@ -6,7 +6,7 @@ module.exports = {
       },
     },
   },
-  documents: ["graphql/query/users.graphql", "graphql/mutation/InsertUser.graphql"],
+  documents: ["graphql/query/users.graphql", "graphql/mutation/InsertUser.graphql", "graphql/mutation/InsertGroup.graphql"],
   generates: {
     "src/utils/graphql/generated.ts": {
       plugins: ["typescript", "typescript-operations", "typescript-react-apollo"],
