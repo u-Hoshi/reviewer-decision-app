@@ -3,8 +3,10 @@ import ReactDOM from "react-dom"
 import { BrowserRouter } from "react-router-dom"
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client"
 import { setContext } from "@apollo/client/link/context"
-
 import { RootRouter } from "./Route"
+import { RecoilRoot } from "recoil"
+import { AuthStateListener } from "./providers/AuthStateListener"
+import { GlobalAccout } from "./providers/GlobalAccount"
 
 const httpLink = createHttpLink({
   uri: process.env.REACT_APP_GRAPHQL_END_POINT_ORIGIN,
@@ -25,11 +27,17 @@ const apolloClient = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={apolloClient}>
-      <BrowserRouter>
-        <RootRouter />
-      </BrowserRouter>
-    </ApolloProvider>
+    <RecoilRoot>
+      <ApolloProvider client={apolloClient}>
+        <AuthStateListener>
+          <GlobalAccout>
+            <BrowserRouter>
+              <RootRouter />
+            </BrowserRouter>
+          </GlobalAccout>
+        </AuthStateListener>
+      </ApolloProvider>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")
 )

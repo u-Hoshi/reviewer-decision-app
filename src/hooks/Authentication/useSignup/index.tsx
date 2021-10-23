@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { useRef } from "react"
 import { useNavigate } from "react-router-dom"
+import { useSetRecoilState } from "recoil"
+import { GlobalUser } from "../../../stores/User"
 import { FireSignupType } from "../../../utils/Firebase/signup"
 import { signup as fireSignup } from "../../../utils/Firebase/signup"
 import { useInsertUserMutation } from "../../../utils/graphql/generated"
@@ -17,16 +19,17 @@ export const useSignup = () => {
 
   const navigate = useNavigate()
 
+  // mutationで作成するデータを格納
+  const setGlobalUser = useSetRecoilState(GlobalUser)
+
   const [insertMutation, { error: apolloError }] = useInsertUserMutation()
 
   const formValidation = (setError: SetErrorFn) => {
     let invalidValidation = false
-
     if (!nameRef.current?.value) {
       setError("name", "名前が入力されていません。")
       invalidValidation = true
     }
-
     if (!emailRef.current?.value) {
       setError("email", "メールアドレスを入力してください。")
       invalidValidation = true
@@ -35,7 +38,6 @@ export const useSignup = () => {
       setError("password", "パスワードを入力してください。")
       invalidValidation = true
     }
-
     return invalidValidation
   }
 
@@ -49,7 +51,6 @@ export const useSignup = () => {
       throw new Error("ユーザーの登録に失敗しました。")
     }
 
-    // Hasuraにuserを作成する
     const apolloResponse = await insertMutation({
       variables: {
         id: user.uid,
@@ -59,20 +60,21 @@ export const useSignup = () => {
     })
 
     if (apolloResponse.data?.insert_users_one?.id) {
+      // GraphQLでデータが作成された後に確実にデータを格納する
+      setGlobalUser(apolloResponse.data?.insert_users_one)
+
       navigate("/")
     } else {
       throw new Error("ユーザーの登録に失敗しました。")
     }
   }
 
-  // useAuthHelperを使用して、実際に認証に使用する関数を生成する
   const { authExecute, error, setErrorHandler, loading } = useAuthHelper(signup, formValidation)
   useEffect(() => {
     if (apolloError?.message) {
       setErrorHandler("main", apolloError.message)
     }
-  }, [apolloError, setErrorHandler])
-
+  }, [apolloError])
   return {
     ref: {
       nameRef,

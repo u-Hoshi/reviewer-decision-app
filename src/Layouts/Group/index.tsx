@@ -1,3 +1,4 @@
+import { VFC } from "react"
 import { Outlet } from "react-router-dom"
 import { DashBoardHeader } from "../../templates/DashBoardHeader"
 import useStyles from "./style"

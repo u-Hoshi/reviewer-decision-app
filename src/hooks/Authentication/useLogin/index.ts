@@ -43,7 +43,7 @@ export const useLogin = (): useLoginType => {
       throw new Error("ログインに失敗しました。")
     }
 
-    navigate("/")
+    navigate("/profile")
   }
 
   const { authExecute, error, loading } = useAuthHelper(login, formValidation)
