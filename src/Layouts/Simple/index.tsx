@@ -1,6 +1,7 @@
+import { VFC } from "react"
 import { Outlet } from "react-router-dom"
 
-export const SimpleLayout = () => {
+export const SimpleLayout: VFC = () => {
   return (
     <div>
       <p>Layout</p>
