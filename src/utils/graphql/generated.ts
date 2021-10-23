@@ -991,6 +991,13 @@ export type InsertUserMutationVariables = Exact<{
 
 export type InsertUserMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename?: 'users', email: string, name: string, id: string, profile_photo_url: string, created_at: any, updated_at: any } | null | undefined };
 
+export type GroupByNameQueryVariables = Exact<{
+  _eq: Scalars['String'];
+}>;
+
+
+export type GroupByNameQuery = { __typename?: 'query_root', group: Array<{ __typename?: 'group', id: number, name: string, responsible_id: number, slackUrl?: string | null | undefined }> };
+
 export type UserByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -1081,6 +1088,44 @@ export function useInsertUserMutation(baseOptions?: Apollo.MutationHookOptions<I
 export type InsertUserMutationHookResult = ReturnType<typeof useInsertUserMutation>;
 export type InsertUserMutationResult = Apollo.MutationResult<InsertUserMutation>;
 export type InsertUserMutationOptions = Apollo.BaseMutationOptions<InsertUserMutation, InsertUserMutationVariables>;
+export const GroupByNameDocument = gql`
+    query GroupByName($_eq: String!) {
+  group(where: {name: {_eq: $_eq}}) {
+    id
+    name
+    responsible_id
+    slackUrl
+  }
+}
+    `;
+
+/**
+ * __useGroupByNameQuery__
+ *
+ * To run a query within a React component, call `useGroupByNameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGroupByNameQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGroupByNameQuery({
+ *   variables: {
+ *      _eq: // value for '_eq'
+ *   },
+ * });
+ */
+export function useGroupByNameQuery(baseOptions: Apollo.QueryHookOptions<GroupByNameQuery, GroupByNameQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GroupByNameQuery, GroupByNameQueryVariables>(GroupByNameDocument, options);
+      }
+export function useGroupByNameLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GroupByNameQuery, GroupByNameQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GroupByNameQuery, GroupByNameQueryVariables>(GroupByNameDocument, options);
+        }
+export type GroupByNameQueryHookResult = ReturnType<typeof useGroupByNameQuery>;
+export type GroupByNameLazyQueryHookResult = ReturnType<typeof useGroupByNameLazyQuery>;
+export type GroupByNameQueryResult = Apollo.QueryResult<GroupByNameQuery, GroupByNameQueryVariables>;
 export const UserByIdDocument = gql`
     query UserById($id: String!) {
   users_by_pk(id: $id) {

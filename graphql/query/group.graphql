@@ -1,0 +1,8 @@
+query GroupByName($_eq: String!) {
+  group(where: {name: {_eq: $_eq}}) {
+    id
+    name
+    responsible_id
+    slackUrl
+  }
+}
