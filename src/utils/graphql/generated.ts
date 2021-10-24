@@ -1064,10 +1064,10 @@ export type InsertUserMutationVariables = Exact<{
 
 export type InsertUserMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename?: 'users', email: string, name: string, id: string, profile_photo_url: string, created_at: any, updated_at: any } | null | undefined };
 
-export type UpdateUsersByPkMutationVariables = Exact<{ [key: string]: never; }>;
+export type UpdateUserByPkMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UpdateUsersByPkMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', id: string } | null | undefined };
+export type UpdateUserByPkMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', id: string } | null | undefined };
 
 export type GroupQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1160,8 +1160,8 @@ export function useInsertUserMutation(baseOptions?: Apollo.MutationHookOptions<I
 export type InsertUserMutationHookResult = ReturnType<typeof useInsertUserMutation>;
 export type InsertUserMutationResult = Apollo.MutationResult<InsertUserMutation>;
 export type InsertUserMutationOptions = Apollo.BaseMutationOptions<InsertUserMutation, InsertUserMutationVariables>;
-export const UpdateUsersByPkDocument = gql`
-    mutation UpdateUsersByPk {
+export const UpdateUserByPkDocument = gql`
+    mutation UpdateUserByPk {
   update_users_by_pk(
     pk_columns: {id: "AT302fNnbTa6VRMgjuNbxxHY2NN2"}
     _set: {group_id: 1}
@@ -1170,31 +1170,31 @@ export const UpdateUsersByPkDocument = gql`
   }
 }
     `;
-export type UpdateUsersByPkMutationFn = Apollo.MutationFunction<UpdateUsersByPkMutation, UpdateUsersByPkMutationVariables>;
+export type UpdateUserByPkMutationFn = Apollo.MutationFunction<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>;
 
 /**
- * __useUpdateUsersByPkMutation__
+ * __useUpdateUserByPkMutation__
  *
- * To run a mutation, you first call `useUpdateUsersByPkMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateUsersByPkMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdateUserByPkMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserByPkMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updateUsersByPkMutation, { data, loading, error }] = useUpdateUsersByPkMutation({
+ * const [updateUserByPkMutation, { data, loading, error }] = useUpdateUserByPkMutation({
  *   variables: {
  *   },
  * });
  */
-export function useUpdateUsersByPkMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUsersByPkMutation, UpdateUsersByPkMutationVariables>) {
+export function useUpdateUserByPkMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateUsersByPkMutation, UpdateUsersByPkMutationVariables>(UpdateUsersByPkDocument, options);
+        return Apollo.useMutation<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>(UpdateUserByPkDocument, options);
       }
-export type UpdateUsersByPkMutationHookResult = ReturnType<typeof useUpdateUsersByPkMutation>;
-export type UpdateUsersByPkMutationResult = Apollo.MutationResult<UpdateUsersByPkMutation>;
-export type UpdateUsersByPkMutationOptions = Apollo.BaseMutationOptions<UpdateUsersByPkMutation, UpdateUsersByPkMutationVariables>;
+export type UpdateUserByPkMutationHookResult = ReturnType<typeof useUpdateUserByPkMutation>;
+export type UpdateUserByPkMutationResult = Apollo.MutationResult<UpdateUserByPkMutation>;
+export type UpdateUserByPkMutationOptions = Apollo.BaseMutationOptions<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>;
 export const GroupDocument = gql`
     query Group {
   group {
