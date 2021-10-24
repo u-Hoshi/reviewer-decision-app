@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "@material-ui/core"
 import { VFC } from "react"
+import { useGroupMemberQuery, useUserByIdQuery } from "../../utils/graphql/generated"
 
 function createData(name: string, email: string, created_at: string) {
   return { name, email, created_at }
@@ -21,6 +22,12 @@ const rows = [
 ]
 
 export const GroupMember: VFC = () => {
+  const data = useGroupMemberQuery({
+    variables: {
+      _eq: 1,
+    },
+  })
+  console.log(data.data?.users)
   return (
     <TableContainer component={Paper}>
       <Table style={{ minWidth: "650px" }} aria-label="simple table">

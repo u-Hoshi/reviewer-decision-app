@@ -11,6 +11,7 @@ module.exports = {
     "graphql/mutation/InsertUser.graphql",
     "graphql/mutation/InsertGroup.graphql",
     "graphql/query/group.graphql",
+    "graphql/query/groupmember.graphql",
   ],
   generates: {
     "src/utils/graphql/generated.ts": {
