@@ -1064,7 +1064,10 @@ export type InsertUserMutationVariables = Exact<{
 
 export type InsertUserMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename?: 'users', email: string, name: string, id: string, profile_photo_url: string, created_at: any, updated_at: any } | null | undefined };
 
-export type UpdateUserByPkMutationVariables = Exact<{ [key: string]: never; }>;
+export type UpdateUserByPkMutationVariables = Exact<{
+  id: Scalars['String'];
+  group_id: Scalars['Int'];
+}>;
 
 
 export type UpdateUserByPkMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', id: string } | null | undefined };
@@ -1161,11 +1164,8 @@ export type InsertUserMutationHookResult = ReturnType<typeof useInsertUserMutati
 export type InsertUserMutationResult = Apollo.MutationResult<InsertUserMutation>;
 export type InsertUserMutationOptions = Apollo.BaseMutationOptions<InsertUserMutation, InsertUserMutationVariables>;
 export const UpdateUserByPkDocument = gql`
-    mutation UpdateUserByPk {
-  update_users_by_pk(
-    pk_columns: {id: "AT302fNnbTa6VRMgjuNbxxHY2NN2"}
-    _set: {group_id: 1}
-  ) {
+    mutation UpdateUserByPk($id: String!, $group_id: Int!) {
+  update_users_by_pk(pk_columns: {id: $id}, _set: {group_id: $group_id}) {
     id
   }
 }
@@ -1185,6 +1185,8 @@ export type UpdateUserByPkMutationFn = Apollo.MutationFunction<UpdateUserByPkMut
  * @example
  * const [updateUserByPkMutation, { data, loading, error }] = useUpdateUserByPkMutation({
  *   variables: {
+ *      id: // value for 'id'
+ *      group_id: // value for 'group_id'
  *   },
  * });
  */

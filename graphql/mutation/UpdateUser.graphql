@@ -1,5 +1,5 @@
-mutation UpdateUserByPk {
-  update_users_by_pk(pk_columns: {id: "AT302fNnbTa6VRMgjuNbxxHY2NN2"}, _set: {group_id: 1}) {
+mutation UpdateUserByPk($id: String!, $group_id: Int!) {
+  update_users_by_pk(pk_columns: {id: $id}, _set: {group_id: $group_id}) {
     id
   }
 }

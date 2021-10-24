@@ -1,8 +1,10 @@
 import { Button } from "@material-ui/core"
 import { useState, VFC } from "react"
 import { Wheel } from "react-custom-roulette"
+import { useUpdate } from "../../hooks/User/useUpdate"
 import useStyles from "./style"
 
+// queryを入れる
 const data = [
   { option: "Bob", style: { backgroundColor: "green", textColor: "black" } },
   { option: "James", style: { backgroundColor: "white", textColor: "black" } },
@@ -10,6 +12,9 @@ const data = [
 ]
 
 export const RouletteBoard: VFC = () => {
+  const { update, error, loading } = useUpdate()
+  window.onload = update
+
   const styles = useStyles()
   const [mustSpin, setMustSpin] = useState(false) // スタート
   const [prizeNumber, setPrizeNumber] = useState(0) //該当者
