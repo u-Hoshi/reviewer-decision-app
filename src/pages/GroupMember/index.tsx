@@ -10,7 +10,10 @@ import {
   TableRow,
 } from "@material-ui/core"
 import { VFC } from "react"
-import { useGroupMemberQuery, useUserByIdQuery } from "../../utils/graphql/generated"
+import { useGroupMemberQuery } from "../../utils/graphql/generated"
+import { useParams } from "react-router-dom"
+import { userInfo } from "os"
+import moment from "moment"
 
 function createData(name: string, email: string, created_at: string) {
   return { name, email, created_at }
@@ -22,12 +25,14 @@ const rows = [
 ]
 
 export const GroupMember: VFC = () => {
+  const { group } = useParams()
+  const groupId = parseInt(group)
   const data = useGroupMemberQuery({
     variables: {
-      _eq: 1,
+      _eq: groupId,
     },
   })
-  console.log(data.data?.users)
+  const rows2 = data.data?.users.map((userInfo) => createData(userInfo.name, userInfo.email, userInfo.created_at))
   return (
     <TableContainer component={Paper}>
       <Table style={{ minWidth: "650px" }} aria-label="simple table">
@@ -40,7 +45,7 @@ export const GroupMember: VFC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows2?.map((row) => (
             <TableRow key={row.name} style={{}}>
               <TableCell component="th" scope="row">
                 {row.name}
