@@ -1064,10 +1064,10 @@ export type InsertUserMutationVariables = Exact<{
 
 export type InsertUserMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename?: 'users', email: string, name: string, id: string, profile_photo_url: string, created_at: any, updated_at: any } | null | undefined };
 
-export type GroupQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type GroupQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GroupQueryQuery = { __typename?: 'query_root', group: Array<{ __typename?: 'group', id: number, name: string }> };
+export type GroupQuery = { __typename?: 'query_root', group: Array<{ __typename?: 'group', id: number, name: string }> };
 
 export type UserByIdQueryVariables = Exact<{
   id: Scalars['String'];
@@ -1155,8 +1155,8 @@ export function useInsertUserMutation(baseOptions?: Apollo.MutationHookOptions<I
 export type InsertUserMutationHookResult = ReturnType<typeof useInsertUserMutation>;
 export type InsertUserMutationResult = Apollo.MutationResult<InsertUserMutation>;
 export type InsertUserMutationOptions = Apollo.BaseMutationOptions<InsertUserMutation, InsertUserMutationVariables>;
-export const GroupQueryDocument = gql`
-    query GroupQuery {
+export const GroupDocument = gql`
+    query Group {
   group {
     id
     name
@@ -1165,31 +1165,31 @@ export const GroupQueryDocument = gql`
     `;
 
 /**
- * __useGroupQueryQuery__
+ * __useGroupQuery__
  *
- * To run a query within a React component, call `useGroupQueryQuery` and pass it any options that fit your needs.
- * When your component renders, `useGroupQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGroupQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGroupQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGroupQueryQuery({
+ * const { data, loading, error } = useGroupQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGroupQueryQuery(baseOptions?: Apollo.QueryHookOptions<GroupQueryQuery, GroupQueryQueryVariables>) {
+export function useGroupQuery(baseOptions?: Apollo.QueryHookOptions<GroupQuery, GroupQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GroupQueryQuery, GroupQueryQueryVariables>(GroupQueryDocument, options);
+        return Apollo.useQuery<GroupQuery, GroupQueryVariables>(GroupDocument, options);
       }
-export function useGroupQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GroupQueryQuery, GroupQueryQueryVariables>) {
+export function useGroupLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GroupQuery, GroupQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GroupQueryQuery, GroupQueryQueryVariables>(GroupQueryDocument, options);
+          return Apollo.useLazyQuery<GroupQuery, GroupQueryVariables>(GroupDocument, options);
         }
-export type GroupQueryQueryHookResult = ReturnType<typeof useGroupQueryQuery>;
-export type GroupQueryLazyQueryHookResult = ReturnType<typeof useGroupQueryLazyQuery>;
-export type GroupQueryQueryResult = Apollo.QueryResult<GroupQueryQuery, GroupQueryQueryVariables>;
+export type GroupQueryHookResult = ReturnType<typeof useGroupQuery>;
+export type GroupLazyQueryHookResult = ReturnType<typeof useGroupLazyQuery>;
+export type GroupQueryResult = Apollo.QueryResult<GroupQuery, GroupQueryVariables>;
 export const UserByIdDocument = gql`
     query UserById($id: String!) {
   users_by_pk(id: $id) {
