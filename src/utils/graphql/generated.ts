@@ -1064,10 +1064,25 @@ export type InsertUserMutationVariables = Exact<{
 
 export type InsertUserMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename?: 'users', email: string, name: string, id: string, profile_photo_url: string, created_at: any, updated_at: any } | null | undefined };
 
+export type UpdateUserByPkMutationVariables = Exact<{
+  id: Scalars['String'];
+  group_id: Scalars['Int'];
+}>;
+
+
+export type UpdateUserByPkMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', id: string } | null | undefined };
+
 export type GroupQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GroupQuery = { __typename?: 'query_root', group: Array<{ __typename?: 'group', id: number, name: string }> };
+
+export type UserByGroupIdQueryVariables = Exact<{
+  _eq: Scalars['Int'];
+}>;
+
+
+export type UserByGroupIdQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', name: string }> };
 
 export type UserByIdQueryVariables = Exact<{
   id: Scalars['String'];
@@ -1155,6 +1170,40 @@ export function useInsertUserMutation(baseOptions?: Apollo.MutationHookOptions<I
 export type InsertUserMutationHookResult = ReturnType<typeof useInsertUserMutation>;
 export type InsertUserMutationResult = Apollo.MutationResult<InsertUserMutation>;
 export type InsertUserMutationOptions = Apollo.BaseMutationOptions<InsertUserMutation, InsertUserMutationVariables>;
+export const UpdateUserByPkDocument = gql`
+    mutation UpdateUserByPk($id: String!, $group_id: Int!) {
+  update_users_by_pk(pk_columns: {id: $id}, _set: {group_id: $group_id}) {
+    id
+  }
+}
+    `;
+export type UpdateUserByPkMutationFn = Apollo.MutationFunction<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>;
+
+/**
+ * __useUpdateUserByPkMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserByPkMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserByPkMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserByPkMutation, { data, loading, error }] = useUpdateUserByPkMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      group_id: // value for 'group_id'
+ *   },
+ * });
+ */
+export function useUpdateUserByPkMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>(UpdateUserByPkDocument, options);
+      }
+export type UpdateUserByPkMutationHookResult = ReturnType<typeof useUpdateUserByPkMutation>;
+export type UpdateUserByPkMutationResult = Apollo.MutationResult<UpdateUserByPkMutation>;
+export type UpdateUserByPkMutationOptions = Apollo.BaseMutationOptions<UpdateUserByPkMutation, UpdateUserByPkMutationVariables>;
 export const GroupDocument = gql`
     query Group {
   group {
@@ -1190,6 +1239,41 @@ export function useGroupLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Grou
 export type GroupQueryHookResult = ReturnType<typeof useGroupQuery>;
 export type GroupLazyQueryHookResult = ReturnType<typeof useGroupLazyQuery>;
 export type GroupQueryResult = Apollo.QueryResult<GroupQuery, GroupQueryVariables>;
+export const UserByGroupIdDocument = gql`
+    query UserByGroupId($_eq: Int!) {
+  users(where: {group_id: {_eq: $_eq}}) {
+    name
+  }
+}
+    `;
+
+/**
+ * __useUserByGroupIdQuery__
+ *
+ * To run a query within a React component, call `useUserByGroupIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserByGroupIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserByGroupIdQuery({
+ *   variables: {
+ *      _eq: // value for '_eq'
+ *   },
+ * });
+ */
+export function useUserByGroupIdQuery(baseOptions: Apollo.QueryHookOptions<UserByGroupIdQuery, UserByGroupIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserByGroupIdQuery, UserByGroupIdQueryVariables>(UserByGroupIdDocument, options);
+      }
+export function useUserByGroupIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserByGroupIdQuery, UserByGroupIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserByGroupIdQuery, UserByGroupIdQueryVariables>(UserByGroupIdDocument, options);
+        }
+export type UserByGroupIdQueryHookResult = ReturnType<typeof useUserByGroupIdQuery>;
+export type UserByGroupIdLazyQueryHookResult = ReturnType<typeof useUserByGroupIdLazyQuery>;
+export type UserByGroupIdQueryResult = Apollo.QueryResult<UserByGroupIdQuery, UserByGroupIdQueryVariables>;
 export const UserByIdDocument = gql`
     query UserById($id: String!) {
   users_by_pk(id: $id) {
