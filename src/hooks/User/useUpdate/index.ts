@@ -6,7 +6,7 @@ import { SetErrorFn, useUserHelper } from "../useUserHelper"
 
 export const useUpdate = () => {
   const urlArray = window.location.href.split("/")
-  const groupId = parseInt(urlArray[urlArray.length])
+  const groupId = parseInt(urlArray[urlArray.length-1])
 
   const globalUser = useRecoilValue(GlobalUser)
 
@@ -54,6 +54,7 @@ export const useUpdate = () => {
 
   return {
     update: userExecute,
+    groupId,
     error,
     loading,
   }

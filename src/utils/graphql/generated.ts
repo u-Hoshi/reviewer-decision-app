@@ -1077,6 +1077,13 @@ export type GroupQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GroupQuery = { __typename?: 'query_root', group: Array<{ __typename?: 'group', id: number, name: string }> };
 
+export type UserByGroupIdQueryVariables = Exact<{
+  _eq: Scalars['Int'];
+}>;
+
+
+export type UserByGroupIdQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', name: string }> };
+
 export type UserByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -1232,6 +1239,41 @@ export function useGroupLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Grou
 export type GroupQueryHookResult = ReturnType<typeof useGroupQuery>;
 export type GroupLazyQueryHookResult = ReturnType<typeof useGroupLazyQuery>;
 export type GroupQueryResult = Apollo.QueryResult<GroupQuery, GroupQueryVariables>;
+export const UserByGroupIdDocument = gql`
+    query UserByGroupId($_eq: Int!) {
+  users(where: {group_id: {_eq: $_eq}}) {
+    name
+  }
+}
+    `;
+
+/**
+ * __useUserByGroupIdQuery__
+ *
+ * To run a query within a React component, call `useUserByGroupIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserByGroupIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserByGroupIdQuery({
+ *   variables: {
+ *      _eq: // value for '_eq'
+ *   },
+ * });
+ */
+export function useUserByGroupIdQuery(baseOptions: Apollo.QueryHookOptions<UserByGroupIdQuery, UserByGroupIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserByGroupIdQuery, UserByGroupIdQueryVariables>(UserByGroupIdDocument, options);
+      }
+export function useUserByGroupIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserByGroupIdQuery, UserByGroupIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserByGroupIdQuery, UserByGroupIdQueryVariables>(UserByGroupIdDocument, options);
+        }
+export type UserByGroupIdQueryHookResult = ReturnType<typeof useUserByGroupIdQuery>;
+export type UserByGroupIdLazyQueryHookResult = ReturnType<typeof useUserByGroupIdLazyQuery>;
+export type UserByGroupIdQueryResult = Apollo.QueryResult<UserByGroupIdQuery, UserByGroupIdQueryVariables>;
 export const UserByIdDocument = gql`
     query UserById($id: String!) {
   users_by_pk(id: $id) {

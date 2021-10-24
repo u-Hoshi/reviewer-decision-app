@@ -2,9 +2,10 @@ import { RouletteBoard } from "../../components/RouletteBoard"
 import { Button, Grid, TextField } from "@material-ui/core"
 import useStyles from "./style"
 import { VFC } from "react"
-import { useUpdate } from "../../hooks/User/useUpdate"
+
 
 export const Roulette: VFC = () => {
+
   const styles = useStyles()
   return (
     <div>

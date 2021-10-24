@@ -4,3 +4,9 @@ query Group {
     name
   }
 }
+
+query UserByGroupId($_eq: Int!) {
+  users(where: {group_id: {_eq: $_eq}}) {
+    name
+  }
+}
