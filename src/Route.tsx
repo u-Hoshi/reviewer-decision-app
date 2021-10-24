@@ -43,7 +43,7 @@ export const RootRouter = () => {
         { path: "/:group", element: <Roulette /> },
         { path: "/:group/member", element: <GroupMember /> },
         { path: "/group/create", element: <CreateGroup /> },
-        { path: "/:group/join", element: <JoinGroup /> },
+        { path: "/group/join", element: <JoinGroup /> },
       ],
     },
     { path: "*", element: <Navigate to="/404" /> },

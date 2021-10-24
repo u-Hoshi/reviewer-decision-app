@@ -66,7 +66,6 @@ export type Group = {
   __typename?: 'group';
   id: Scalars['Int'];
   name: Scalars['String'];
-  responsible_id: Scalars['Int'];
   slackUrl?: Maybe<Scalars['String']>;
 };
 
@@ -104,7 +103,6 @@ export type Group_Aggregate_FieldsCountArgs = {
 export type Group_Avg_Fields = {
   __typename?: 'group_avg_fields';
   id?: Maybe<Scalars['Float']>;
-  responsible_id?: Maybe<Scalars['Float']>;
 };
 
 /** Boolean expression to filter rows from the table "group". All fields are combined with a logical 'AND'. */
@@ -114,7 +112,6 @@ export type Group_Bool_Exp = {
   _or?: Maybe<Array<Group_Bool_Exp>>;
   id?: Maybe<Int_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  responsible_id?: Maybe<Int_Comparison_Exp>;
   slackUrl?: Maybe<String_Comparison_Exp>;
 };
 
@@ -127,14 +124,12 @@ export enum Group_Constraint {
 /** input type for incrementing numeric columns in table "group" */
 export type Group_Inc_Input = {
   id?: Maybe<Scalars['Int']>;
-  responsible_id?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "group" */
 export type Group_Insert_Input = {
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  responsible_id?: Maybe<Scalars['Int']>;
   slackUrl?: Maybe<Scalars['String']>;
 };
 
@@ -143,7 +138,6 @@ export type Group_Max_Fields = {
   __typename?: 'group_max_fields';
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  responsible_id?: Maybe<Scalars['Int']>;
   slackUrl?: Maybe<Scalars['String']>;
 };
 
@@ -152,7 +146,6 @@ export type Group_Min_Fields = {
   __typename?: 'group_min_fields';
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  responsible_id?: Maybe<Scalars['Int']>;
   slackUrl?: Maybe<Scalars['String']>;
 };
 
@@ -176,7 +169,6 @@ export type Group_On_Conflict = {
 export type Group_Order_By = {
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  responsible_id?: Maybe<Order_By>;
   slackUrl?: Maybe<Order_By>;
 };
 
@@ -192,8 +184,6 @@ export enum Group_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  ResponsibleId = 'responsible_id',
-  /** column name */
   SlackUrl = 'slackUrl'
 }
 
@@ -201,7 +191,6 @@ export enum Group_Select_Column {
 export type Group_Set_Input = {
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  responsible_id?: Maybe<Scalars['Int']>;
   slackUrl?: Maybe<Scalars['String']>;
 };
 
@@ -209,28 +198,24 @@ export type Group_Set_Input = {
 export type Group_Stddev_Fields = {
   __typename?: 'group_stddev_fields';
   id?: Maybe<Scalars['Float']>;
-  responsible_id?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Group_Stddev_Pop_Fields = {
   __typename?: 'group_stddev_pop_fields';
   id?: Maybe<Scalars['Float']>;
-  responsible_id?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Group_Stddev_Samp_Fields = {
   __typename?: 'group_stddev_samp_fields';
   id?: Maybe<Scalars['Float']>;
-  responsible_id?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate sum on columns */
 export type Group_Sum_Fields = {
   __typename?: 'group_sum_fields';
   id?: Maybe<Scalars['Int']>;
-  responsible_id?: Maybe<Scalars['Int']>;
 };
 
 /** update columns of table "group" */
@@ -240,8 +225,6 @@ export enum Group_Update_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  ResponsibleId = 'responsible_id',
-  /** column name */
   SlackUrl = 'slackUrl'
 }
 
@@ -249,21 +232,18 @@ export enum Group_Update_Column {
 export type Group_Var_Pop_Fields = {
   __typename?: 'group_var_pop_fields';
   id?: Maybe<Scalars['Float']>;
-  responsible_id?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate var_samp on columns */
 export type Group_Var_Samp_Fields = {
   __typename?: 'group_var_samp_fields';
   id?: Maybe<Scalars['Float']>;
-  responsible_id?: Maybe<Scalars['Float']>;
 };
 
 /** aggregate variance on columns */
 export type Group_Variance_Fields = {
   __typename?: 'group_variance_fields';
   id?: Maybe<Scalars['Float']>;
-  responsible_id?: Maybe<Scalars['Float']>;
 };
 
 /** mutation root */
@@ -420,6 +400,7 @@ export type Mutation_RootUpdate_Responsible_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_UsersArgs = {
+  _inc?: Maybe<Users_Inc_Input>;
   _set?: Maybe<Users_Set_Input>;
   where: Users_Bool_Exp;
 };
@@ -427,6 +408,7 @@ export type Mutation_RootUpdate_UsersArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Users_By_PkArgs = {
+  _inc?: Maybe<Users_Inc_Input>;
   _set?: Maybe<Users_Set_Input>;
   pk_columns: Users_Pk_Columns_Input;
 };
@@ -821,9 +803,11 @@ export type Users = {
   __typename?: 'users';
   created_at: Scalars['timestamptz'];
   email: Scalars['String'];
+  group_id?: Maybe<Scalars['Int']>;
   id: Scalars['String'];
   name: Scalars['String'];
   profile_photo_url: Scalars['String'];
+  responsible_id?: Maybe<Scalars['Int']>;
   updated_at: Scalars['timestamptz'];
 };
 
@@ -837,9 +821,17 @@ export type Users_Aggregate = {
 /** aggregate fields of "users" */
 export type Users_Aggregate_Fields = {
   __typename?: 'users_aggregate_fields';
+  avg?: Maybe<Users_Avg_Fields>;
   count: Scalars['Int'];
   max?: Maybe<Users_Max_Fields>;
   min?: Maybe<Users_Min_Fields>;
+  stddev?: Maybe<Users_Stddev_Fields>;
+  stddev_pop?: Maybe<Users_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Users_Stddev_Samp_Fields>;
+  sum?: Maybe<Users_Sum_Fields>;
+  var_pop?: Maybe<Users_Var_Pop_Fields>;
+  var_samp?: Maybe<Users_Var_Samp_Fields>;
+  variance?: Maybe<Users_Variance_Fields>;
 };
 
 
@@ -849,6 +841,13 @@ export type Users_Aggregate_FieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** aggregate avg on columns */
+export type Users_Avg_Fields = {
+  __typename?: 'users_avg_fields';
+  group_id?: Maybe<Scalars['Float']>;
+  responsible_id?: Maybe<Scalars['Float']>;
+};
+
 /** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
 export type Users_Bool_Exp = {
   _and?: Maybe<Array<Users_Bool_Exp>>;
@@ -856,9 +855,11 @@ export type Users_Bool_Exp = {
   _or?: Maybe<Array<Users_Bool_Exp>>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
+  group_id?: Maybe<Int_Comparison_Exp>;
   id?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   profile_photo_url?: Maybe<String_Comparison_Exp>;
+  responsible_id?: Maybe<Int_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -868,13 +869,21 @@ export enum Users_Constraint {
   UsersPkey = 'users_pkey'
 }
 
+/** input type for incrementing numeric columns in table "users" */
+export type Users_Inc_Input = {
+  group_id?: Maybe<Scalars['Int']>;
+  responsible_id?: Maybe<Scalars['Int']>;
+};
+
 /** input type for inserting data into table "users" */
 export type Users_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
+  group_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   profile_photo_url?: Maybe<Scalars['String']>;
+  responsible_id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -883,9 +892,11 @@ export type Users_Max_Fields = {
   __typename?: 'users_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
+  group_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   profile_photo_url?: Maybe<Scalars['String']>;
+  responsible_id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -894,9 +905,11 @@ export type Users_Min_Fields = {
   __typename?: 'users_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
+  group_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   profile_photo_url?: Maybe<Scalars['String']>;
+  responsible_id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -920,9 +933,11 @@ export type Users_On_Conflict = {
 export type Users_Order_By = {
   created_at?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
+  group_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   profile_photo_url?: Maybe<Order_By>;
+  responsible_id?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
 };
 
@@ -938,11 +953,15 @@ export enum Users_Select_Column {
   /** column name */
   Email = 'email',
   /** column name */
+  GroupId = 'group_id',
+  /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
   /** column name */
   ProfilePhotoUrl = 'profile_photo_url',
+  /** column name */
+  ResponsibleId = 'responsible_id',
   /** column name */
   UpdatedAt = 'updated_at'
 }
@@ -951,10 +970,40 @@ export enum Users_Select_Column {
 export type Users_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
+  group_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   profile_photo_url?: Maybe<Scalars['String']>;
+  responsible_id?: Maybe<Scalars['Int']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Users_Stddev_Fields = {
+  __typename?: 'users_stddev_fields';
+  group_id?: Maybe<Scalars['Float']>;
+  responsible_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Users_Stddev_Pop_Fields = {
+  __typename?: 'users_stddev_pop_fields';
+  group_id?: Maybe<Scalars['Float']>;
+  responsible_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Users_Stddev_Samp_Fields = {
+  __typename?: 'users_stddev_samp_fields';
+  group_id?: Maybe<Scalars['Float']>;
+  responsible_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Users_Sum_Fields = {
+  __typename?: 'users_sum_fields';
+  group_id?: Maybe<Scalars['Int']>;
+  responsible_id?: Maybe<Scalars['Int']>;
 };
 
 /** update columns of table "users" */
@@ -964,23 +1013,47 @@ export enum Users_Update_Column {
   /** column name */
   Email = 'email',
   /** column name */
+  GroupId = 'group_id',
+  /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
   /** column name */
   ProfilePhotoUrl = 'profile_photo_url',
   /** column name */
+  ResponsibleId = 'responsible_id',
+  /** column name */
   UpdatedAt = 'updated_at'
 }
 
+/** aggregate var_pop on columns */
+export type Users_Var_Pop_Fields = {
+  __typename?: 'users_var_pop_fields';
+  group_id?: Maybe<Scalars['Float']>;
+  responsible_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Users_Var_Samp_Fields = {
+  __typename?: 'users_var_samp_fields';
+  group_id?: Maybe<Scalars['Float']>;
+  responsible_id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Users_Variance_Fields = {
+  __typename?: 'users_variance_fields';
+  group_id?: Maybe<Scalars['Float']>;
+  responsible_id?: Maybe<Scalars['Float']>;
+};
+
 export type InsertGroupMutationVariables = Exact<{
   slackUrl: Scalars['String'];
-  responsible_id: Scalars['Int'];
   name: Scalars['String'];
 }>;
 
 
-export type InsertGroupMutation = { __typename?: 'mutation_root', insert_group_one?: { __typename?: 'group', id: number, name: string, responsible_id: number, slackUrl?: string | null | undefined } | null | undefined };
+export type InsertGroupMutation = { __typename?: 'mutation_root', insert_group_one?: { __typename?: 'group', id: number, name: string, slackUrl?: string | null | undefined } | null | undefined };
 
 export type InsertUserMutationVariables = Exact<{
   email: Scalars['String'];
@@ -991,6 +1064,11 @@ export type InsertUserMutationVariables = Exact<{
 
 export type InsertUserMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename?: 'users', email: string, name: string, id: string, profile_photo_url: string, created_at: any, updated_at: any } | null | undefined };
 
+export type GroupQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GroupQuery = { __typename?: 'query_root', group: Array<{ __typename?: 'group', id: number, name: string }> };
+
 export type UserByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -1000,13 +1078,10 @@ export type UserByIdQuery = { __typename?: 'query_root', users_by_pk?: { __typen
 
 
 export const InsertGroupDocument = gql`
-    mutation InsertGroup($slackUrl: String!, $responsible_id: Int!, $name: String!) {
-  insert_group_one(
-    object: {name: $name, responsible_id: $responsible_id, slackUrl: $slackUrl}
-  ) {
+    mutation InsertGroup($slackUrl: String!, $name: String!) {
+  insert_group_one(object: {name: $name, slackUrl: $slackUrl}) {
     id
     name
-    responsible_id
     slackUrl
   }
 }
@@ -1027,7 +1102,6 @@ export type InsertGroupMutationFn = Apollo.MutationFunction<InsertGroupMutation,
  * const [insertGroupMutation, { data, loading, error }] = useInsertGroupMutation({
  *   variables: {
  *      slackUrl: // value for 'slackUrl'
- *      responsible_id: // value for 'responsible_id'
  *      name: // value for 'name'
  *   },
  * });
@@ -1081,6 +1155,41 @@ export function useInsertUserMutation(baseOptions?: Apollo.MutationHookOptions<I
 export type InsertUserMutationHookResult = ReturnType<typeof useInsertUserMutation>;
 export type InsertUserMutationResult = Apollo.MutationResult<InsertUserMutation>;
 export type InsertUserMutationOptions = Apollo.BaseMutationOptions<InsertUserMutation, InsertUserMutationVariables>;
+export const GroupDocument = gql`
+    query Group {
+  group {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useGroupQuery__
+ *
+ * To run a query within a React component, call `useGroupQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGroupQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGroupQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGroupQuery(baseOptions?: Apollo.QueryHookOptions<GroupQuery, GroupQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GroupQuery, GroupQueryVariables>(GroupDocument, options);
+      }
+export function useGroupLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GroupQuery, GroupQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GroupQuery, GroupQueryVariables>(GroupDocument, options);
+        }
+export type GroupQueryHookResult = ReturnType<typeof useGroupQuery>;
+export type GroupLazyQueryHookResult = ReturnType<typeof useGroupLazyQuery>;
+export type GroupQueryResult = Apollo.QueryResult<GroupQuery, GroupQueryVariables>;
 export const UserByIdDocument = gql`
     query UserById($id: String!) {
   users_by_pk(id: $id) {
