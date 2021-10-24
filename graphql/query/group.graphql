@@ -1,8 +1,6 @@
-query GroupByName($_eq: String!) {
-  group(where: {name: {_eq: $_eq}}) {
+query GroupQuery {
+  group {
     id
     name
-    responsible_id
-    slackUrl
   }
 }

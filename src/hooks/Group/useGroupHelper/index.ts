@@ -15,7 +15,7 @@ export type SetErrorFn = (name: ErrorState, message: string) => void;
  * @param formValidation バリデーションチェックの実態を外部から追加する
  * @returns
  */
-export const useCreateHelper = (
+export const useGroupHelper = (
   executeProcess: () => Promise<void>,
   formValidation: (setError: SetErrorFn) => boolean
 ) => {
@@ -31,7 +31,7 @@ export const useCreateHelper = (
     setError((prev) => new Map(prev.set(name, message)));
   };
 
-  const createExecute = async () => {
+  const groupExecute = async () => {
     // 認証を実行したら、一度エラー文をリセットする
     // これをしないと不要なエラーメッセージが画面に表示されたままになってしまう。
     setError(new Map());
@@ -59,7 +59,7 @@ export const useCreateHelper = (
   };
 
   return {
-    createExecute,
+    groupExecute,
     loading,
     error,
     setErrorHandler,

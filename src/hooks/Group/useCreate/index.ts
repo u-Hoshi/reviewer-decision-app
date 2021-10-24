@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { useNavigate } from "react-router"
 import { useInsertGroupMutation } from "../../../utils/graphql/generated"
-import { SetErrorFn, useCreateHelper } from "../useCreateHelper"
+import { SetErrorFn, useGroupHelper } from "../useGroupHelper"
 
 export const useCreate = () => {
   const nameRef = useRef<HTMLInputElement>(null)
@@ -42,19 +42,17 @@ export const useCreate = () => {
       variables: {
         name: nameRef.current.value,
         slackUrl: slackUrlRef.current.value,
-        responsible_id: 1,
       },
     })
 
     if (apolloResponse.data?.insert_group_one?.id) {
-        
       navigate(`/${apolloResponse.data?.insert_group_one.id}`)
     } else {
       throw new Error("グループ新規作成に失敗しました。")
     }
   }
 
-  const { createExecute, error, setErrorHandler, loading } = useCreateHelper(create, formValidation)
+  const { groupExecute, error, setErrorHandler, loading } = useGroupHelper(create, formValidation)
 
   useEffect(() => {
     if (apolloError?.message) {
@@ -67,7 +65,7 @@ export const useCreate = () => {
       nameRef,
       slackUrlRef,
     },
-    create: createExecute,
+    create: groupExecute,
     error,
     loading,
   }
