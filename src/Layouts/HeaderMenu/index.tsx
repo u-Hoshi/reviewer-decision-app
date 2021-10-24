@@ -66,7 +66,8 @@ export const HeaderMenu: VFC<HeaderMenuType> = ({ anchorEl, setAnchorEl }) => {
       <MenuItem onClick={() => onClickItem("/group/create")}>新規グループを作成</MenuItem>
       <MenuItem onClick={() => onClickItem("/group/join")}>新規グループに加入</MenuItem>
       {/* <MenuItem>参加中のグループ</MenuItem> */}
-      <MenuItem onClick={() => onClickItem("profile")}>プロフィール</MenuItem>
+      <MenuItem onClick={() => onClickItem("/profile")}>プロフィール</MenuItem>
+      <MenuItem onClick={() => onClickItem("/signout")}>ログアウト</MenuItem>
     </StyledMenu>
   )
 }
