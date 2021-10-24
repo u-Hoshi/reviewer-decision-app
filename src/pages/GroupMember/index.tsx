@@ -12,17 +12,12 @@ import {
 import { VFC } from "react"
 import { useGroupMemberQuery } from "../../utils/graphql/generated"
 import { useParams } from "react-router-dom"
-import { userInfo } from "os"
 import moment from "moment"
 
-function createData(name: string, email: string, created_at: string) {
+function createData(name: string, email: string, created_at_date: string) {
+  const created_at = moment(created_at_date).format("YYYY-MM-DD")
   return { name, email, created_at }
 }
-
-const rows = [
-  createData("Frozen yoghurt", "hoge@sample.com", "2021-10-18"),
-  createData("Ice cream sandwich", "foo@sample.com", "2021-10-18"),
-]
 
 export const GroupMember: VFC = () => {
   const { group } = useParams()
@@ -34,8 +29,8 @@ export const GroupMember: VFC = () => {
   })
   const rows2 = data.data?.users.map((userInfo) => createData(userInfo.name, userInfo.email, userInfo.created_at))
   return (
-    <TableContainer component={Paper}>
-      <Table style={{ minWidth: "650px" }} aria-label="simple table">
+    <TableContainer style={{ width: "1280px", margin: "0 auto", marginTop: "20px" }} component={Paper}>
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>名前</TableCell>

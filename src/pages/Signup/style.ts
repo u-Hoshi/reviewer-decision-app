@@ -4,6 +4,7 @@ export default makeStyles({
   root: {
     width: "95%",
     maxWidth: 550,
+    margin: "0 auto",
     padding: "50px 70px",
   },
   margin: {
