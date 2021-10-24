@@ -1,17 +1,21 @@
-import { Grid, Paper, Typography, Chip, Box } from "@material-ui/core"
+import { Grid, Paper, Typography, Chip, Box, Button } from "@material-ui/core"
+import useStyles from "./style"
 
 export const JoinGroup = () => {
+  const styles = useStyles()
   return (
     <div>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <h1>グループに参加</h1>
-          <Paper elevation={1}>
+      <Box textAlign="center" m={3}>
+        <Typography variant="h4">グループに参加</Typography>
+      </Box>
+      <Grid container spacing={2} className={styles.root}>
+        <Grid item xs={3}>
+          <Paper elevation={1} className={styles.item}>
             <Box p={2}>
               <Typography variant="h5">タイトル</Typography>
-              <Box textAlign="right" pt={1}>
-                <Chip label="参加する" color="secondary" />
-              </Box>
+              <Button variant="contained" size="large" className={styles.submit}>
+                グループ参加
+              </Button>
             </Box>
           </Paper>
         </Grid>

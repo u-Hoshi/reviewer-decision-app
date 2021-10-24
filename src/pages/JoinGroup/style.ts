@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core"
 
 export default makeStyles({
   root: {
-    marginTop: "10%",
     textAlign: "center",
   },
   groupname: {
@@ -15,5 +14,10 @@ export default makeStyles({
     "&:hover": {
       backgroundColor: "#6376DB",
     },
+  },
+  item: {
+    align: "center",
+    margin: "0 auto",
+    width: "100%",
   },
 })
