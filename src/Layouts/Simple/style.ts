@@ -5,6 +5,6 @@ export default makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100%",
+    height: "100vh",
   },
 })

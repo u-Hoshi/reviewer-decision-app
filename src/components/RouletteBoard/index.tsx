@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core"
-import { useState, VFC } from "react"
+import { useEffect, useState, VFC } from "react"
 import { Wheel } from "react-custom-roulette"
 import { WheelData } from "react-custom-roulette/dist/components/Wheel/types"
 import { useUpdate } from "../../hooks/User/useUpdate"
@@ -26,9 +26,11 @@ export const RouletteBoard: VFC = () => {
     return colorArray[Math.floor(Math.random() * colorArray.length)]
   }
 
-  userData?.users.map((user) => {
-    data.push({ option: user.name, style: { backgroundColor: randomColor(), textColor: "black" } })
-  })
+  useEffect(() => {
+    userData?.users.map((user) => {
+      data.push({ option: user.name, style: { backgroundColor: randomColor(), textColor: "black" } })
+    })
+  }, [userData])
 
   const styles = useStyles()
   const [mustSpin, setMustSpin] = useState(false) // スタート
